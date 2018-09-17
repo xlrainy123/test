@@ -39,7 +39,7 @@ stroke-width: 1.5px;
 }
 
 .link.resolved {
-  stroke-dasharray: 0,2 1;
+  stroke-dasharray: 0,21;
 }
 
 circle {
@@ -59,8 +59,8 @@ text {
 }
 
  .container {
-    height: 225px;
-    width: 175px;
+    height: 100px;
+    width: 100px;
     border:2px solid #000;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -78,9 +78,9 @@ text {
 <script>
         // var width = 900;
         // var height = 800;
-		var width = 1560,
+		var width = 1780,
     		//height = 500;
-		    height = 1000;
+		    height = 900;
         	img_w = 77;
         	img_h = 80;
         	radius = 40;    //圆形半径
@@ -131,11 +131,11 @@ text {
                             .size([width,height])
                             .linkDistance(function(d) {
 									if (d.label != "property") {
-										return 80;
+										return 320;
 									}
-									return 70;
+									return 320;
 								})
-                            .charge(-1500)
+                            .charge(-1800)
 							.on("tick",tick)
                             .start();
             //边             
@@ -182,9 +182,13 @@ text {
 							   .style("fill", function(node){
 									var color;//圆圈背景色
 									var link=links[node.index];
-									if (node.name==1){
+									if (node.name==1 || node.name==2){
                                         color="0080FF";
                                     }
+                                    else if (node.name==12 || node.name==13 ||node.name==14){
+									    color="9393FF";
+                                    }
+
 									else if(node.label=="property"){
 										color="#e9b99f";
 										color="9393FF";
@@ -199,7 +203,7 @@ text {
 									  if (d.relation == "relation") {
 										return radius;
 									  }
-										return 0.7*radius;
+										return 0.6*radius;
 									})
 								.on("click",function(node){
 									//单击时让连接线加粗
@@ -246,7 +250,8 @@ text {
 						d3.select(this).append('tspan')
 						.attr('x',0)
 						.attr('y',2)
-						.text(function(){return "user"+d.name;});
+                        .text(function(){return "user"+d.name;});
+						//.text(function(){return "user"+d.name;});
 					}
 					else if(d.name.length<=6){                       //如果小于四个字符，不换行
                         //alert("2")
@@ -255,7 +260,7 @@ text {
 						.attr('y',2)
 						.text(function(){return d.name;});
 					}else{
-                        alert("3")
+                        //alert("3")
 						var top=d.name.substring(0,6);
 						var bot=d.name.substring(6,d.name.length);
 						d3.select(this).text(function(){return '';});

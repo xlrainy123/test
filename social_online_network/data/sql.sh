@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # dump into mysql
 
-mysql -u root -p < dump.sql
+mysql -u root -p < d.sql

@@ -18,7 +18,7 @@ def user_graph():
     global mydata
     req = request.args
     user_id = req['user']
-    mydata = user_models.execute(conn, cursor, user_id)
+    mydata = user_models.single(conn, cursor, user_id)
     return render_template('test.html')
 
 @app.route("/usergraph/data")
